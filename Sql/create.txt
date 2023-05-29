@@ -1,0 +1,100 @@
+CREATE DATABASE kib;
+USE kib;
+
+CREATE TABLE `responses` (
+  `id` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `content` varchar(500) NOT NULL
+) ;
+
+CREATE TABLE `services` (
+  `id` int NOT NULL,
+  `title` varchar(100) NOT NULL
+);
+
+
+CREATE TABLE `services_content` (
+  `id` int NOT NULL,
+  `services_id` int NOT NULL,
+  `slider_content` varchar(500) NOT NULL,
+  `card_content` varchar(500) NOT NULL
+);
+
+
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `password` varchar(30) NOT NULL
+);
+
+
+
+
+
+ALTER TABLE `responses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `services_content`
+--
+ALTER TABLE `services_content`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT для збережених таблиць
+--
+
+--
+-- AUTO_INCREMENT для таблиці `responses`
+--
+ALTER TABLE `responses`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблиці `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблиці `services_content`
+--
+ALTER TABLE `services_content`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблиці `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+
+
+
+
+
+alter table  services_content
+add foreign key (id) references user (id);
+
+alter table services_content
+add foreign key (id) references  services(id);
+
+
+alter table services
+add foreign key (id) references  responses(id);
+
+
